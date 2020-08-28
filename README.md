@@ -27,8 +27,6 @@ Before running, ensure you have access to:
     - dplyr
     - vioplot
     
-
-
 ## Simulation of mitochondrial motion
 
 To run the model code, with chosen parameterisations as input variables use:
