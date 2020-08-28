@@ -1,0 +1,382 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     14497,        374]
+NotebookOptionsPosition[     14061,        357]
+NotebookOutlinePosition[     14413,        373]
+CellTagsIndexPosition[     14370,        370]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"#", "!"}], "/", "Applications"}], "/", 
+        RowBox[{"Mathematica", ".", "app"}]}], "/", "Contents"}], "/", 
+      "MacOS"}], "/", "MathematicaScript"}], "-", "script"}], "*)"}], 
+  "\[IndentingNewLine]", "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+    "directory", "=", "\"\</Users/d1795494/Documents/PIPELINE/MitoGFP/\>\""}],
+     ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+    "toSetDirectory", "=", 
+     "\"\</Users/d1795494/Documents/PIPELINE/MitoGFP/ScaleAndCrop-\
+zoomedvid4outfocus\>\""}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"SetDirectory", "[", "toSetDirectory", "]"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"name", "=", "\"\<ScaleAndCrop-zoomedvid4outfocus\>\""}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+    "resultsfilename", "=", 
+     "\"\<zoomedvideo4outfocusADJUSTEDCROPPEDabs1.csv\>\""}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"indexlist", "=", 
+     RowBox[{"Range", "[", 
+      RowBox[{"1", ",", "118"}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"colocdist", "=", "\"\<8.0\>\""}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"directory", "=", 
+      RowBox[{"$ScriptCommandLine", "[", 
+       RowBox[{"[", "2", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"toSetDirectory", "=", " ", 
+      RowBox[{"\"\<\>\"", "<>", 
+       RowBox[{"ToString", "[", 
+        RowBox[{"$ScriptCommandLine", "[", 
+         RowBox[{"[", "2", "]"}], "]"}], "]"}], "<>", "\"\<\>\"", "<>", 
+       RowBox[{"ToString", "[", 
+        RowBox[{"$ScriptCommandLine", "[", 
+         RowBox[{"[", "3", "]"}], "]"}], "]"}], "<>", "\"\<\>\""}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"SetDirectory", "[", "toSetDirectory", "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"name", "=", 
+      RowBox[{"$ScriptCommandLine", "[", 
+       RowBox[{"[", "3", "]"}], "]"}]}], ";", "\n", 
+     RowBox[{"resultsfilename", " ", "=", " ", 
+      RowBox[{"$ScriptCommandLine", "[", 
+       RowBox[{"[", "4", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"colocdist", "=", 
+      RowBox[{"$ScriptCommandLine", "[", 
+       RowBox[{"[", "8", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"indexlist", " ", "=", " ", 
+      RowBox[{"Range", "[", 
+       RowBox[{"1", ",", " ", 
+        RowBox[{"ToExpression", "[", 
+         RowBox[{"$ScriptCommandLine", "[", 
+          RowBox[{"[", "7", "]"}], "]"}], "]"}]}], "]"}]}], ";"}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"graphlist", "=", 
+     RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", "\n", 
+   RowBox[{"For", "[", " ", 
+    RowBox[{
+     RowBox[{"k", "=", "1"}], ",", 
+     RowBox[{"k", "\[LessEqual]", 
+      RowBox[{"Length", "[", "indexlist", "]"}]}], ",", 
+     RowBox[{"k", "++"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"networkdata", "=", " ", 
+       RowBox[{"ReadList", "[", 
+        RowBox[{
+         RowBox[{"\"\<\>\"", "<>", 
+          RowBox[{"ToString", "[", "directory", "]"}], "<>", "\"\<\>\"", "<>", 
+          RowBox[{"ToString", "[", "name", "]"}], "<>", "\"\</\>\"", "<>", 
+          RowBox[{"ToString", "[", "resultsfilename", "]"}], "<>", 
+          "\"\<-\>\"", "<>", 
+          RowBox[{"ToString", "[", "colocdist", "]"}], "<>", "\"\<-\>\"", "<>", 
+          RowBox[{"ToString", "[", 
+           RowBox[{"indexlist", "[", 
+            RowBox[{"[", "k", "]"}], "]"}], "]"}], "<>", "\"\<.txt\>\""}], 
+         ",", 
+         RowBox[{"{", 
+          RowBox[{"Number", ",", "Number"}], "}"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"am", "=", 
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"networkdata", "[", 
+            RowBox[{"[", "i", "]"}], "]"}], "[", 
+           RowBox[{"[", "1", "]"}], "]"}], "\[Rule]", 
+          RowBox[{
+           RowBox[{"networkdata", "[", 
+            RowBox[{"[", "i", "]"}], "]"}], "[", 
+           RowBox[{"[", "2", "]"}], "]"}]}], ",", 
+         RowBox[{"{", 
+          RowBox[{"i", ",", "1", ",", 
+           RowBox[{"Length", "[", "networkdata", "]"}]}], "}"}]}], "]"}]}], 
+      ";", "\n", 
+      RowBox[{"amf", "=", 
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"networkdata", "[", 
+            RowBox[{"[", "i", "]"}], "]"}], "[", 
+           RowBox[{"[", "1", "]"}], "]"}], "\[UndirectedEdge]", 
+          RowBox[{
+           RowBox[{"networkdata", "[", 
+            RowBox[{"[", "i", "]"}], "]"}], "[", 
+           RowBox[{"[", "2", "]"}], "]"}]}], ",", 
+         RowBox[{"{", 
+          RowBox[{"i", ",", "1", ",", 
+           RowBox[{"Length", "[", "networkdata", "]"}]}], "}"}]}], "]"}]}], 
+      ";", "\n", 
+      RowBox[{"graph", "=", 
+       RowBox[{"Graph", "[", "amf", "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"graphlist", "=", 
+       RowBox[{"Append", "[", 
+        RowBox[{"graphlist", ",", "graph"}], "]"}]}], ";"}]}], 
+    "\[IndentingNewLine]", "]"}], "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Gather", " ", "the", " ", "list", " ", "of", " ", "connected", " ", 
+     "components", " ", "sizes", " ", "of", " ", "each", " ", "frame"}], 
+    "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"sizes", "=", 
+     RowBox[{"Map", "[", 
+      RowBox[{"Length", ",", 
+       RowBox[{"ConnectedComponents", "/@", "graphlist"}], ",", 
+       RowBox[{"{", "2", "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"From", " ", "these"}], ",", " ", 
+     RowBox[{
+     "gather", " ", "the", " ", "size", " ", "of", " ", "the", " ", "largest",
+       " ", "connected", " ", "component", " ", "in", " ", "that", " ", 
+      "frame"}], ",", " ", 
+     RowBox[{
+     "and", " ", "the", " ", "total", " ", "size", " ", "of", " ", 
+      "connected", " ", "copmponents", " ", "in", " ", "that", " ", 
+      "frame"}]}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Take", " ", "the", " ", "proportional", " ", "size", " ", "of", " ", 
+     "connected", " ", "components", " ", "by", " ", "doing", " ", "largest", 
+     " ", 
+     RowBox[{"size", "/", "total"}], " ", "size", " ", "for", " ", "each", 
+     " ", "set", " ", "of", " ", "connected", " ", "components", " ", "in", 
+     " ", "a", " ", "frame"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"LargestCCList", "=", 
+     RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"TotalCCsList", "=", 
+     RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"For", "[", 
+    RowBox[{
+     RowBox[{"i", "=", "1"}], ",", 
+     RowBox[{"i", "\[LessEqual]", 
+      RowBox[{"Length", "[", "sizes", "]"}]}], ",", 
+     RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"LargestCCList", "=", 
+       RowBox[{"Append", "[", 
+        RowBox[{"LargestCCList", ",", 
+         RowBox[{
+          RowBox[{"sizes", "[", 
+           RowBox[{"[", "i", "]"}], "]"}], "[", 
+          RowBox[{"[", "1", "]"}], "]"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"TotalCCsList", "=", 
+       RowBox[{"Append", "[", 
+        RowBox[{"TotalCCsList", ",", " ", 
+         RowBox[{"Total", "[", 
+          RowBox[{"sizes", "[", 
+           RowBox[{"[", "i", "]"}], "]"}], "]"}]}], "]"}]}], ";"}]}], 
+    "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"proportionList", "=", 
+     RowBox[{"N", "[", 
+      RowBox[{"LargestCCList", "/", "TotalCCsList"}], "]"}]}], ";"}], "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{
+     "For", " ", "each", " ", "of", " ", "the", " ", "proportional", " ", 
+      "sizes", " ", "of", " ", "connected", " ", "components"}], ",", 
+     RowBox[{
+     "if", " ", "the", " ", "size", " ", "of", " ", "proportional", " ", 
+      "connected", " ", "components", " ", "is", " ", "greater", " ", "than", 
+      " ", "0.5", " ", "AND", " ", "the", " ", "previous", " ", "connected", 
+      " ", "component", " ", "was", " ", "under", " ", "0.5"}], ",", " ", 
+     RowBox[{
+     "store", " ", "the", " ", "frame", " ", "number", " ", "at", " ", 
+      "which", " ", "that", " ", 
+      RowBox[{"happens", ".", " ", "If"}], " ", "there", " ", "is", " ", "no",
+       " ", "increase", " ", "to", " ", "or", " ", "above", " ", "0.5", " ", 
+      "at", " ", "all"}], ",", " ", 
+     RowBox[{
+     "store", " ", "the", " ", "time", " ", "point", " ", "at", " ", "which", 
+      " ", "this", " ", "jump", " ", "occurs", " ", "as", " ", "Infinity"}]}],
+     "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"listOfPassableFrames", "=", 
+     RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"sizebefore", "=", 
+     RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"sizeafter", "=", 
+     RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"For", "[", 
+    RowBox[{
+     RowBox[{"c", "=", "1"}], ",", 
+     RowBox[{"c", "<", 
+      RowBox[{"Length", "[", "proportionList", "]"}]}], ",", 
+     RowBox[{"c", "++"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"proportionList", "[", 
+         RowBox[{"[", "c", "]"}], "]"}], "\[GreaterEqual]", "0.5"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"proportionList", "[", 
+           RowBox[{"[", 
+            RowBox[{"c", "-", "1"}], "]"}], "]"}], "<", "0.5"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"listOfPassableFrames", "=", 
+           RowBox[{"Append", "[", 
+            RowBox[{"listOfPassableFrames", ",", "c"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"sizebefore", "=", 
+           RowBox[{"Append", "[", 
+            RowBox[{"sizebefore", ",", 
+             RowBox[{"proportionList", "[", 
+              RowBox[{"[", 
+               RowBox[{"c", "-", "1"}], "]"}], "]"}]}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"sizeafter", "=", 
+           RowBox[{"Append", "[", 
+            RowBox[{"sizeafter", ",", 
+             RowBox[{"proportionList", "[", 
+              RowBox[{"[", "c", "]"}], "]"}]}], "]"}]}], ";"}]}], 
+        "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "]"}]}], 
+    "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", 
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Length", "[", "listOfPassableFrames", "]"}], "\[Equal]", "0"}],
+      ",", 
+     RowBox[{"(", " ", 
+      RowBox[{
+       RowBox[{"listOfPassableFrames", "=", 
+        RowBox[{"Append", "[", 
+         RowBox[{"listOfPassableFrames", ",", "\"\<Infinity\>\""}], "]"}]}], 
+       ";", 
+       RowBox[{"sizebefore", "=", 
+        RowBox[{"Append", "[", 
+         RowBox[{"sizebefore", ",", "\"\<NA\>\""}], "]"}]}], ";", 
+       RowBox[{"sizeafter", "=", 
+        RowBox[{"Append", "[", 
+         RowBox[{"sizeafter", ",", "\"\<NA\>\""}], "]"}]}], ";"}], ")"}]}], 
+    "]"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Export", " ", "this", " ", "list", " ", "of", " ", "time", " ", "points",
+      " ", "where", " ", "crossing", " ", "over", " ", "0.5", " ", 
+     "proportional", " ", "size", " ", "occured", " ", "occurred"}], "*)"}], 
+   "\n", 
+   RowBox[{
+    RowBox[{"jumpsTable", "=", 
+     RowBox[{"List", "[", 
+      RowBox[{
+       RowBox[{"Flatten", "[", "listOfPassableFrames", "]"}], ",", 
+       RowBox[{"Flatten", "[", "sizebefore", "]"}], ",", 
+       RowBox[{"Flatten", "[", "sizeafter", "]"}]}], "]"}]}], ";", 
+    RowBox[{"Export", "[", 
+     RowBox[{
+      RowBox[{"\"\<percolationThresholdJumps\>\"", "<>", 
+       RowBox[{"ToString", "[", "name", "]"}], "<>", "\"\<.csv\>\""}], ",", 
+      RowBox[{
+       RowBox[{"Prepend", "[", 
+        RowBox[{
+         RowBox[{"Transpose", "[", "jumpsTable", "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{
+          "\"\<FrameOfOccurance\>\"", ",", "\"\<propsizebefore\>\"", ",", 
+           "\"\<propsizeafter\>\""}], "}"}]}], "]"}], "//", "TableForm"}]}], 
+     "]"}]}], "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"Transpose", "[", 
+      RowBox[{"List", "[", 
+       RowBox[{
+        RowBox[{"Flatten", "[", "indexlist", "]"}], ",", 
+        RowBox[{"Flatten", "[", "LargestCCList", "]"}]}], "]"}], "]"}], "//", 
+     "TableForm"}], "*)"}]}]}]], "Input",
+ CellChangeTimes->{{3.7935134627326527`*^9, 3.793513546869615*^9}, {
+  3.7935196714641047`*^9, 3.793519672382206*^9}, {3.793527082779986*^9, 
+  3.7935271392029753`*^9}, {3.793527335860442*^9, 3.793527341007804*^9}, {
+  3.793527420875957*^9, 3.79352746827621*^9}, {3.7939458928725023`*^9, 
+  3.793945996152876*^9}, {3.7939465186767607`*^9, 3.793946533742032*^9}, {
+  3.793952082107851*^9, 3.7939521291730957`*^9}, {3.793952254939734*^9, 
+  3.793952258719389*^9}, {3.793954024874612*^9, 3.7939540537092047`*^9}, {
+  3.79395483974587*^9, 3.793954873821851*^9}},
+ CellLabel->
+  "In[218]:=",ExpressionUUID->"80c34138-56f4-4fd8-95e3-e82443c2beeb"],
+
+Cell[BoxData["\<\"percolationThresholdJumpsScaleAndCrop-zoomedvid4outfocus.\
+csv\"\>"], "Output",
+ CellChangeTimes->{3.793954875806643*^9},
+ CellLabel->
+  "Out[237]=",ExpressionUUID->"98ca5009-0665-4dcc-b090-04b8e0859d92"]
+}, Open  ]]
+},
+WindowSize->{808, 707},
+WindowMargins->{{Automatic, 0}, {Automatic, 4}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 13240, 326, 1522, "Input",ExpressionUUID->"80c34138-56f4-4fd8-95e3-e82443c2beeb"],
+Cell[13823, 350, 222, 4, 34, "Output",ExpressionUUID->"98ca5009-0665-4dcc-b090-04b8e0859d92"]
+}, Open  ]]
+}
+]
+*)
+

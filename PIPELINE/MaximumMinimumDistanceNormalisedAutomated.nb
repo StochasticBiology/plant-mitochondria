@@ -1,0 +1,503 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     19640,        495]
+NotebookOptionsPosition[     19332,        481]
+NotebookOutlinePosition[     19684,        497]
+CellTagsIndexPosition[     19641,        494]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"#", "!"}], "/", "Applications"}], "/", 
+       RowBox[{"Mathematica", ".", "app"}]}], "/", "Contents"}], "/", 
+     "MacOS"}], "/", "MathematicaScript"}], "-", "script"}], 
+  "\[IndentingNewLine]", "\n", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "This", " ", "indexlist", " ", "represents", " ", "how", " ", "many", " ",
+      "frames", " ", "are", " ", "in", " ", "the", " ", "video"}], ",", 
+    RowBox[{
+    "which", " ", "we", " ", "loop", " ", "over", " ", "to", " ", "generate", 
+     " ", "networks", " ", "for", " ", "them", " ", "all"}]}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "its", " ", "important", " ", "to", " ", "change", " ", "this", " ", 
+     "value", " ", "to", " ", "an", " ", "expression", " ", "so", " ", "It", 
+     " ", "can", " ", "be", " ", "used", " ", "as", " ", "an", " ", 
+     "expression"}], ",", 
+    RowBox[{"not", " ", "a", " ", "string"}]}], "*)"}], "\[IndentingNewLine]",
+   "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "IF", " ", "you", " ", "want", " ", "to", " ", "do", " ", "the", " ", 
+     "calculation", " ", "for", " ", "averageDistanceOverNetwork", " ", 
+     "WITH", " ", "Singletons"}], ",", " ", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"it", "'"}], "s", " ", "in", " ", "the", " ", 
+     RowBox[{
+     "summaryStatisticsGenerationForVideoDatawithSingletons", ".", "sh"}], 
+     " ", "document"}]}], "*)"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"indexlist", "=", 
+   RowBox[{"Range", "[", 
+    RowBox[{"1", ",", 
+     RowBox[{"ToExpression", "[", 
+      RowBox[{"$ScriptCommandLine", "[", 
+       RowBox[{"[", "7", "]"}], "]"}], "]"}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"name", "=", 
+   RowBox[{"$ScriptCommandLine", "[", 
+    RowBox[{"[", "3", "]"}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"resultsfilename", "=", 
+   RowBox[{"$ScriptCommandLine", "[", 
+    RowBox[{"[", "4", "]"}], "]"}]}], ";"}], "\n", 
+ RowBox[{"toSetDirectory", "=", 
+  RowBox[{"\"\<\>\"", "<>", 
+   RowBox[{"ToString", "[", 
+    RowBox[{"$ScriptCommandLine", "[", 
+     RowBox[{"[", "2", "]"}], "]"}], "]"}], "<>", "\"\<\>\"", "<>", 
+   RowBox[{"ToString", "[", 
+    RowBox[{"$ScriptCommandLine", "[", 
+     RowBox[{"[", "3", "]"}], "]"}], "]"}], "<>", "\"\<\>\""}]}], "\n", 
+ RowBox[{
+  RowBox[{"SetDirectory", "[", "toSetDirectory", "]"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"colocdist", "=", 
+   RowBox[{"$ScriptCommandLine", "[", 
+    RowBox[{"[", "8", "]"}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"directory", "=", 
+    RowBox[{"$ScriptCommandLine", "[", 
+     RowBox[{"[", "2", "]"}], "]"}]}], ";"}], "\[IndentingNewLine]"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"graphlist", "=", 
+    RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"Loop", " ", "through", " ", 
+    RowBox[{
+     RowBox[{"the", "."}], "/", 
+     RowBox[{"organelles", ".", "ce"}]}], " ", "outputs"}], "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{"For", "[", 
+   RowBox[{
+    RowBox[{"k", "=", "1"}], ",", 
+    RowBox[{"k", "\[LessEqual]", 
+     RowBox[{"Length", "[", "indexlist", "]"}]}], ",", 
+    RowBox[{"k", "++"}], ",", 
+    RowBox[{"(*", 
+     RowBox[{
+     "Read", " ", "in", " ", "historical", " ", "adjacency", " ", "matrix"}], 
+     "*)"}], 
+    RowBox[{
+     RowBox[{"l", "=", 
+      RowBox[{"ReadList", "[", 
+       RowBox[{
+        RowBox[{"\"\<\>\"", "<>", 
+         RowBox[{"ToString", "[", "directory", "]"}], "<>", "\"\<\>\"", "<>", 
+         
+         RowBox[{"ToString", "[", "name", "]"}], "<>", "\"\</\>\"", "<>", 
+         RowBox[{"ToString", "[", "resultsfilename", "]"}], "<>", "\"\<-\>\"",
+          "<>", 
+         RowBox[{"ToString", "[", "colocdist", "]"}], "<>", "\"\<-\>\"", "<>", 
+         RowBox[{"ToString", "[", 
+          RowBox[{"indexlist", "[", 
+           RowBox[{"[", "k", "]"}], "]"}], "]"}], "<>", "\"\<.txt\>\""}], ",", 
+        RowBox[{"{", 
+         RowBox[{"Number", ",", "Number"}], "}"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+       RowBox[{
+       "Uses", " ", "each", " ", "number", " ", "pair", " ", "from", " ", 
+        "historical", " ", "adjacency", " ", "matrix", " ", "as", " ", "a", 
+        " ", "directed", " ", "then", " ", "undirected", " ", "graphs"}], ",", 
+       RowBox[{
+       "storing", " ", "each", " ", "frames", " ", "graph", " ", "as", " ", 
+        "g5"}]}], "*)"}], 
+     RowBox[{"am", "=", 
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"l", "[", 
+           RowBox[{"[", "i", "]"}], "]"}], "[", 
+          RowBox[{"[", "1", "]"}], "]"}], "\[Rule]", 
+         RowBox[{
+          RowBox[{"l", "[", 
+           RowBox[{"[", "i", "]"}], "]"}], "[", 
+          RowBox[{"[", "2", "]"}], "]"}]}], ",", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", "1", ",", 
+          RowBox[{"Length", "[", "l", "]"}]}], "}"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"amf", "=", 
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"l", "[", 
+           RowBox[{"[", "i", "]"}], "]"}], "[", 
+          RowBox[{"[", "1", "]"}], "]"}], "\[UndirectedEdge]", 
+         RowBox[{
+          RowBox[{"l", "[", 
+           RowBox[{"[", "i", "]"}], "]"}], "[", 
+          RowBox[{"[", "2", "]"}], "]"}]}], ",", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", "1", ",", 
+          RowBox[{"Length", "[", "l", "]"}]}], "}"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"g5", "=", 
+      RowBox[{"Graph", "[", 
+       RowBox[{"amf", ",", 
+        RowBox[{"VertexStyle", "\[Rule]", "Black"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{"Gathers", " ", "all", " ", "graphs", " ", "as", " ", 
+       RowBox[{"graphlist", ".", 
+        RowBox[{"Note", ":", 
+         RowBox[{
+         "Graphlist", " ", "is", " ", "used", " ", "to", " ", "call", " ", 
+          "the", " ", "bC", " ", "and", " ", "Degree", " ", "histograms", " ",
+           "from", " ", 
+          RowBox[{"later", ".", "Accessed"}], " ", "with", " ", 
+          RowBox[{"graphlist", "[", 
+           RowBox[{"[", "n", "]"}], "]"}]}]}]}]}], "*)"}], 
+     RowBox[{"graphlist", "=", 
+      RowBox[{"Append", "[", 
+       RowBox[{"graphlist", ",", "g5"}], "]"}]}], ";"}]}], 
+   "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", "\n", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "This", " ", "function", " ", "works", " ", "to", " ", "generate", " ", 
+     "100", " ", "erdos", " ", "renyi", " ", "networks", " ", "based", " ", 
+     "on", " ", "the", " ", "degree", " ", "distribution", " ", "of", " ", 
+     "the", " ", "input", " ", "network"}], ",", 
+    RowBox[{"calculate", " ", "their", " ", "maxmin", " ", "distance"}], ",", 
+    
+    RowBox[{"and", " ", "average", " ", "these", " ", 
+     RowBox[{"values", ".", "You"}], " ", "can", " ", "then", " ", "use", " ",
+      "these", " ", "values", " ", "to", " ", "normalise", " ", "the", " ", 
+     "graphs", " ", "you", " ", "generate", " ", 
+     RowBox[{"by", "."}]}]}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "Due", " ", "to", " ", "some", " ", "of", " ", "the", " ", "random", " ", 
+     "networks", " ", "having", " ", "or", " ", "not", " ", "having", " ", 
+     "seperate", " ", "connected", " ", "components"}], ",", 
+    RowBox[{
+    "not", " ", "all", " ", "of", " ", "the", " ", "largest", " ", 
+     "distances", " ", "come", " ", "out", " ", "at", " ", "infinity"}], ",", 
+    
+    RowBox[{
+    "like", " ", "they", " ", "do", " ", "if", " ", "you", " ", "have", " ", 
+     "seperate", " ", "connected", " ", 
+     RowBox[{"components", ".", "In"}], " ", "order", " ", "to", " ", "get", 
+     " ", "around", " ", "the", " ", "value", " ", "of", " ", 
+     RowBox[{"allmaxdists", "[", 
+      RowBox[{"[", "1", "]"}], "]"}], " ", "being", " ", "or", " ", "not", 
+     " ", "being", " ", "infinity"}], ",", 
+    RowBox[{
+    "I", " ", "wrote", " ", "an", " ", "If", " ", "catch", " ", "on", " ", 
+     "it"}], ",", 
+    RowBox[{"that", " ", "builds", " ", "a", " ", "new", " ", "list", " ", 
+     RowBox[{"(", "newmaxdists", ")"}], " ", "from", " ", "the", " ", 
+     "allmaxdists1", " ", "if", " ", "its", " ", "not", " ", "infinity"}], 
+    ",", 
+    RowBox[{"and", " ", "allmaxdists2", " ", 
+     RowBox[{"otherwise", "."}]}]}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"ErdosRenyiGraphsx100", "[", "x_", "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"graph", "=", "x"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"allmaxdists1", "=", 
+       RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"allmaxdists2", "=", 
+       RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"newmaxdists", "=", 
+       RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"For", "[", 
+        RowBox[{
+         RowBox[{"m", "=", "1"}], ",", 
+         RowBox[{"m", "\[LessEqual]", "100"}], ",", 
+         RowBox[{"m", "++"}], ",", 
+         RowBox[{
+          RowBox[{"Print", "[", 
+           RowBox[{"\"\<ER net number:\>\"", ",", 
+            RowBox[{"ToString", "[", "m", "]"}], ",", "\"\<\>\""}], "]"}], 
+          ";", "\[IndentingNewLine]", 
+          RowBox[{"(*", 
+           RowBox[{
+           "Make", " ", "the", " ", "erdos", " ", "renyi", " ", "based", " ", 
+            "off", " ", "corresponding", " ", "degree", " ", "distribution"}],
+            "*)"}], 
+          RowBox[{"ex", "=", 
+           RowBox[{"RandomGraph", "[", 
+            RowBox[{"DegreeGraphDistribution", "[", 
+             RowBox[{"DegreeCentrality", "[", "graph", "]"}], "]"}], "]"}]}], 
+          ";", "\[IndentingNewLine]", 
+          RowBox[{"(*", 
+           RowBox[{
+           "Get", " ", "the", " ", "minimum", " ", "maximum", " ", "distance",
+             " ", "for", " ", "it"}], "*)"}], 
+          RowBox[{"maxdists", "=", 
+           RowBox[{"DeleteDuplicates", "[", 
+            RowBox[{"Reverse", "[", 
+             RowBox[{"Sort", "[", 
+              RowBox[{"Flatten", "[", 
+               RowBox[{"GraphDistanceMatrix", "[", "ex", "]"}], "]"}], "]"}], 
+             "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"(*", 
+           RowBox[{"exclude", " ", "the", " ", "infinities"}], "*)"}], 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"maxdists", "[", 
+              RowBox[{"[", "1", "]"}], "]"}], "<", "\[Infinity]"}], ",", 
+            RowBox[{"newmaxdists", "=", 
+             RowBox[{"Append", "[", 
+              RowBox[{"newmaxdists", ",", 
+               RowBox[{"maxdists", "[", 
+                RowBox[{"[", "1", "]"}], "]"}]}], "]"}]}], ",", 
+            RowBox[{"newmaxdists", "=", 
+             RowBox[{"Append", "[", 
+              RowBox[{"newmaxdists", ",", 
+               RowBox[{"maxdists", "[", 
+                RowBox[{"[", "2", "]"}], "]"}]}], "]"}]}]}], "]"}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"allmaxdists1", "=", 
+           RowBox[{"Append", "[", 
+            RowBox[{"allmaxdists1", ",", 
+             RowBox[{"maxdists", "[", 
+              RowBox[{"[", "1", "]"}], "]"}]}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"allmaxdists2", "=", 
+           RowBox[{"Append", "[", 
+            RowBox[{"allmaxdists2", ",", 
+             RowBox[{"maxdists", "[", 
+              RowBox[{"[", "2", "]"}], "]"}]}], "]"}]}], ";"}]}], "]"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{"return", " ", "the", " ", "max", " ", "min", " ", "dists"}], 
+        "*)"}], " ", 
+       RowBox[{"Return", "[", 
+        RowBox[{
+         RowBox[{"Mean", "[", "newmaxdists", "]"}], ",", "Module"}], 
+        "]"}]}]}]}], "]"}]}], "\[IndentingNewLine]"}], "\n", 
+ RowBox[{
+  RowBox[{"maxmindistlistnoinf", "=", 
+   RowBox[{"{", "}"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"averagedistlistnoinf", "=", 
+   RowBox[{"{", "}"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"normalisedlist100", "=", 
+   RowBox[{"{", "}"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"For", "[", 
+   RowBox[{
+    RowBox[{"k", "=", "1"}], ",", 
+    RowBox[{"k", "\[LessEqual]", 
+     RowBox[{"Length", "[", "indexlist", "]"}]}], ",", 
+    RowBox[{"k", "++"}], ",", 
+    RowBox[{
+     RowBox[{"Print", "[", 
+      RowBox[{"\"\<Frame\>\"", ",", 
+       RowBox[{"ToString", "[", "k", "]"}], ",", "\"\<\>\""}], "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"maxmindistlist", "=", 
+      RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+      "Find", " ", "the", " ", "average", " ", "of", " ", "distances", " ", 
+       "across", " ", "the", " ", "network", " ", "in", " ", "each", " ", 
+       RowBox[{"frame", ".", "Remove"}], " ", "Infinities", " ", "as", " ", 
+       "Thats", " ", "the", " ", "distance", " ", "found", " ", "between", 
+       " ", "2", " ", "connected", " ", 
+       RowBox[{"components", ".", "Also"}], " ", "remove", " ", "0", "s", " ",
+        "thats", " ", "the", " ", "distance", " ", "between", " ", "a", " ", 
+       "node", " ", "and", " ", 
+       RowBox[{"itself", "."}]}], "*)"}], 
+     RowBox[{"averagedistlist", "=", 
+      RowBox[{"GraphDistanceMatrix", "[", 
+       RowBox[{"graphlist", "[", 
+        RowBox[{"[", "k", "]"}], "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"removedInf", "=", 
+      RowBox[{"DeleteCases", "[", 
+       RowBox[{
+        RowBox[{"Flatten", "[", "averagedistlist", "]"}], ",", 
+        "\[Infinity]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"removed0", "=", 
+      RowBox[{"DeleteCases", "[", 
+       RowBox[{"removedInf", ",", "0"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     
+     RowBox[{"averagedist", "=", 
+      RowBox[{"N", "[", 
+       RowBox[{"Mean", "[", "removed0", "]"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"averagedistlistnoinf", "=", 
+      RowBox[{"Append", "[", 
+       RowBox[{"averagedistlistnoinf", ",", "averagedist"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+      "Find", " ", "the", " ", "maximum", " ", "minimum", " ", "distance", 
+       " ", "across", " ", "the", " ", "network", " ", "in", " ", "each", " ",
+        "frame"}], "*)"}], 
+     RowBox[{"maxmindist", "=", 
+      RowBox[{"DeleteDuplicates", "[", 
+       RowBox[{"Reverse", "[", 
+        RowBox[{"Sort", "[", 
+         RowBox[{"Flatten", "[", 
+          RowBox[{"GraphDistanceMatrix", "[", 
+           RowBox[{"graphlist", "[", 
+            RowBox[{"[", "k", "]"}], "]"}], "]"}], "]"}], "]"}], "]"}], 
+       "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{"exclude", " ", "the", " ", "infinities"}], "*)"}], 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"maxmindist", "[", 
+         RowBox[{"[", "1", "]"}], "]"}], "<", "\[Infinity]"}], ",", 
+       RowBox[{"maxmindistlist", "=", 
+        RowBox[{"Append", "[", 
+         RowBox[{"maxmindistlist", ",", 
+          RowBox[{"maxmindist", "[", 
+           RowBox[{"[", "1", "]"}], "]"}]}], "]"}]}], ",", 
+       RowBox[{"maxmindistlist", "=", 
+        RowBox[{"Append", "[", 
+         RowBox[{"maxmindistlist", ",", 
+          RowBox[{"maxmindist", "[", 
+           RowBox[{"[", "2", "]"}], "]"}]}], "]"}]}]}], "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+       RowBox[{
+       "Build", " ", "up", " ", "a", " ", "list", " ", "of", " ", "these", 
+        " ", "max", " ", "distances"}], ",", 
+       RowBox[{"one", " ", "for", " ", "each", " ", "frame"}]}], "*)"}], 
+     RowBox[{"maxmindistlistnoinf", "=", 
+      RowBox[{"Append", "[", 
+       RowBox[{"maxmindistlistnoinf", ",", "maxmindistlist"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{"Then", ",", 
+       RowBox[{
+       "we", " ", "want", " ", "to", " ", "normalise", " ", "depending", " ", 
+        "on", " ", "each", " ", "graphs", " ", "degree", " ", 
+        "distribution"}]}], "*)"}], 
+     RowBox[{"normalisedmaxmindist100", "=", 
+      RowBox[{"ErdosRenyiGraphsx100", "[", 
+       RowBox[{"graphlist", "[", 
+        RowBox[{"[", "k", "]"}], "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"normalisedlist100", "=", 
+      RowBox[{"Append", "[", 
+       RowBox[{"normalisedlist100", ",", "normalisedmaxmindist100"}], "]"}]}],
+      ";"}]}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"normalisedmaxmindist10", "=", 
+      RowBox[{"ErdosRenyiGraphsx10", "[", 
+       RowBox[{"graphlist", "[", 
+        RowBox[{"[", "k", "]"}], "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"normalisedlist10", "=", 
+      RowBox[{"Append", "[", 
+       RowBox[{"normalisedlist10", ",", "normalisedmaxmindist10"}], "]"}]}], 
+     ";"}], "*)"}], "]"}], "\[IndentingNewLine]"}], "\n", 
+ RowBox[{"Print", "[", "\"\<Running Export\>\"", "]"}], "\n", 
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<normalisedAndRawMaxMinDistsForAllFrames.csv\>\"", ",", 
+    RowBox[{"Prepend", "[", 
+     RowBox[{
+      RowBox[{"Transpose", "@", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Flatten", "[", "indexlist", "]"}], ",", 
+         RowBox[{"Flatten", "[", "maxmindistlistnoinf", "]"}], ",", 
+         RowBox[{"N", "[", "normalisedlist100", "]"}], ",", 
+         RowBox[{"Flatten", "[", 
+          RowBox[{"N", "[", 
+           RowBox[{"maxmindistlistnoinf", "/", "normalisedlist100"}], "]"}], 
+          "]"}]}], "}"}]}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+       "\"\<Frames\>\"", ",", "\"\<Max Min Dist\>\"", ",", 
+        "\"\<Norm Max Min Dist from x100 ERs\>\"", ",", 
+        "\"\<MaxMin/NormMaxMin100\>\""}], "}"}]}], "]"}]}], "]"}], 
+  "\[IndentingNewLine]"}], "\n", 
+ RowBox[{"Export", "[", 
+  RowBox[{"\"\<averageDistsOverNetworksForAllFrames.csv\>\"", ",", 
+   RowBox[{"Prepend", "[", 
+    RowBox[{
+     RowBox[{"Transpose", "@", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Flatten", "[", "indexlist", "]"}], ",", 
+        RowBox[{"Flatten", "[", "averagedistlistnoinf", "]"}]}], "}"}]}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+      "\"\<Frames\>\"", ",", 
+       "\"\<Average Distance between all nodes in the network\>\""}], "}"}]}],
+     "]"}]}], "]"}], "\n"}], "Input",
+ CellChangeTimes->{{3.80328650886965*^9, 3.803286508880886*^9}, {
+   3.803286543997573*^9, 3.803286609705758*^9}, 3.803287035920211*^9, {
+   3.803642111995669*^9, 
+   3.80364211565594*^9}},ExpressionUUID->"0e151f26-4b27-4797-b50e-\
+e476e31aabc1"]
+},
+WindowSize->{808, 703},
+WindowMargins->{{4, Automatic}, {Automatic, 4}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 18770, 459, 2068, "Input",ExpressionUUID->"0e151f26-4b27-4797-b50e-e476e31aabc1"]
+}
+]
+*)
+
