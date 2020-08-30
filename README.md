@@ -4,7 +4,7 @@
 Retrive a local copy with
 
 ```sh
-git clone filemae
+git clone https://github.com/StochasticBiology/plant-mitochondria.git
 ```
 
 ## Requirements
@@ -42,7 +42,7 @@ This script also runs `masterSSGeneration.sh` so analyses the output, generating
 
 
 This example will, among other summary statistics outputs, provide network images such as:
-![Philadelphia's Magic Gardens. This place was so cool!](/assets/images/philly-magic-gardens.jpg "Philadelphia's Magic Gardens")
+![This is a simulation output example, showing network illustrations over time](assets/3_111_0.050_2.166_0.000_0.216_4.581_3.472_0.884_0_0.762_0.162_0_AllNetworks.jpg)
 
 
 ## Analysis of experimental data
