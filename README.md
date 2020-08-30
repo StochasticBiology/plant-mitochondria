@@ -92,7 +92,7 @@ This input will look like:
 
 This will give you the ./PIPELINE/videoAfolder/VideoA full of summary statistics lists, images, and graphs. 
 
-> GIF and PDF of traces generation
+### GIF and PDF of traces generation
 
 This uses two files: one for generating gifs from simulation data, one for generating gifs from experimental data. 
 This is due to cytoskeletal strands being added to simulation gifs.
@@ -108,7 +108,7 @@ For experimental data, example:
 ./visualise2forvideosfromtrackmate.sh ./PIPELINE/videoAfolder/ VideoA trackmateVideoA.xml.csv 1.5000 1.0000 118 1.6
 ```
 
-> Summary Statistics table generation, and trellis plot figures
+### Summary Statistics table generation, and trellis plot figures
 
 Statistics gathering from all appropriate files begins with running:
 
