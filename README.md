@@ -29,7 +29,7 @@ Before running, ensure you have access to:
     
 ## Simulation of mitochondrial motion
 
-To run the model code, with chosen parameterisations as input variables use:
+To run the model code (as defined by [physnew-28-11-19.c](PIPELINE/physnew-28-11-19.c)), with chosen parameterisations as input variables use:
 ```sh
 ./automatedSimulationRun.sh NCYT NMITO EDGELOSS CYTDIST CYTATTACH CYTDETACH CYTSPEED MITDIST MITSPEED STEPTYPE STEPPARAM HYDRO RSEED
 ```

@@ -8,6 +8,7 @@ gcc physnew-28-11-19.c -I/usr/local/include/igraph -L/usr/local/lib/ -ligraph -l
 
 cd ./PIPELINE/
 
+#This .c file is the model code, can be used for single simulation runs (its current implementation), or for inference work using an Approximate Bayesian Computation format. 
 #here alter the colocalisation distance (microns), here currently set to 1.6
 ./physnew-28-11-19.ce --simulation ${1} ${2} ${3} ${4} ${5} ${6} ${7} ${8} ${9} ${10} ${11} ${12} ${13} 1.6
 
