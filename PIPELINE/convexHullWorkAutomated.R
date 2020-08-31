@@ -6,7 +6,6 @@ library(sp)
 
 
 workingd<-(paste(args[1],args[2],sep=""))
-#workingd<-(paste("/home/gadmin/Documents/Joanna/Simulation/SimulationFrames/ntwrkGenForABCsim/",allParas,sep=""))
 setwd(workingd)
 print(workingd)
 

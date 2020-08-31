@@ -23,7 +23,7 @@
 #Sometimes these are empty, particularly in the slowest sims. So will fill with NAs for reading. 
 for i in $(seq 0 $6); do
 
-if grep -q "mitochondria" "$1/$2/all_speeds/Speedofallmitosinframe${i}.csv"; then
+if grep -q "mitochondria" "$1$2/all_speeds/Speedofallmitosinframe${i}.csv"; then
   echo "String found here" ; # SomeString was found 
 else echo "NA" > $1/$2/all_speeds/Speedofallmitosinframe${i}.csv ;
 #else echo "empty" ;
