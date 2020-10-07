@@ -4,7 +4,7 @@ pwd
 echo ${1} ${2} ${3} ${4} ${5} ${6} ${7} ${8}
 #Organelles-am-2.ce takes the trajectory analysis file, and the colocalisation distance (8.0 (video) or 1.6 (sim) in this case)
 
-./PIPELINE/organelles-am-2.ce ${3} ${7}
+../../organelles-am-2.ce ${3} ${7}
 #Gives: filename.txt, the adjacency matrix for all colocalised mitos in that frame
 #       filename-single.txt all singleton mitos present over time between frame 1 and i, as long as they haven't become colocalised. 
 #       filename-single-new.txt all new singletons that have appeared in frame i
@@ -62,11 +62,6 @@ echo finishedproportionsCCs
 #Histogram and log table generation
 #For some of the simulation files these histograms won't generate because you're missing the first few frames of data as a network has not yet built up
 ./summaryStatisticsHists.R ${1} ${2} ${6}
-
-#Calculates association time between two individual mitos for all mitos in video, and first checks -spec.txt have content, if not adds NAs in. Otherwise empty files hinder association time count
-./emptyFileCheck.sh ${1} ${2} ${3} ${4} ${5} ${6} ${7} ${8}
-./associationTime.r ${1} ${2} ${3} ${4} ${5} ${6} ${7} ${8}
-
  
 #Calculates angle of motion for all mitos in video
 echo running angles
@@ -78,7 +73,10 @@ echo running speeds
 ./speedsOfMitochondriaForVids.r ${1} ${2} ${3} ${4} ${5} ${6}
 
 echo finished speeds
-echo finish
+
+#Calculates association time between two individual mitos for all mitos in video, and first checks -spec.txt have content, if not adds NAs in. Otherwise empty files hinder association time count
+./emptyFileCheck.sh ${1} ${2} ${3} ${4} ${5} ${6} ${7} ${8}
+./associationTime.r ${1} ${2} ${3} ${4} ${5} ${6} ${7} ${8}
 
 #Calculates shortest inter-mitochondrial distance between each mito in the cell and every other mito. Also CoV.
 echo running inter mito distance
