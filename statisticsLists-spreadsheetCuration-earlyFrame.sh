@@ -68,23 +68,23 @@ do
             #Mean Speed
             find $line -name "speedMeansOverAllFrames*" | xargs -n1 awk -v frame="$((earlyFrame+1))" -F "," '{if(NR==frame) print $3}' >> PIPELINE/meanSpeedCollation-earlypoint.txt
             #Convex hull maximum
-            find $line -name "ConvexHullSummStatsFromFrame1to$earlyFrame*" | xargs -n1 awk -F "," 'END{print $2}' >> PIPELINE/maxCHCollation-earlypoint.txt
+            find $line -name "ConvexHullSummStatsFromFrame1to${earlyFrame}_*" | xargs -n1 awk -F "," 'END{print $2}' >> PIPELINE/maxCHCollation-earlypoint.txt
             #Convex hull minimum
-            find $line -name "ConvexHullSummStatsFromFrame1to$earlyFrame*" | xargs -n1 awk -F "," 'END{print $3}' >> PIPELINE/minCHCollation-earlypoint.txt
+            find $line -name "ConvexHullSummStatsFromFrame1to${earlyFrame}_*" | xargs -n1 awk -F "," 'END{print $3}' >> PIPELINE/minCHCollation-earlypoint.txt
             #Convex hull mean
-            find $line -name "ConvexHullSummStatsFromFrame1to$earlyFrame*" | xargs -n1 awk -F "," 'END{print $4}' >> PIPELINE/meanCHCollation-earlypoint.txt
+            find $line -name "ConvexHullSummStatsFromFrame1to${earlyFrame}_*" | xargs -n1 awk -F "," 'END{print $4}' >> PIPELINE/meanCHCollation-earlypoint.txt
             #Convex hull CoV
-            find $line -name "ConvexHullSummStatsFromFrame1to$earlyFrame*" | xargs -n1 awk -F "," 'END{print $5}' >> PIPELINE/cvCHCollation-earlypoint.txt
+            find $line -name "ConvexHullSummStatsFromFrame1to${earlyFrame}_*" | xargs -n1 awk -F "," 'END{print $5}' >> PIPELINE/cvCHCollation-earlypoint.txt
             #AssociationTime
-            find $line -name "associationtimeIntervalsMeanIn1to$earlyFrame*" | xargs -n1 awk -F "," 'END{print $2}' >> PIPELINE/assocTimeCollation-earlypoint.txt
+            find $line -name "associationtimeIntervalsMeanIn1to${earlyFrame}_*" | xargs -n1 awk -F "," 'END{print $2}' >> PIPELINE/assocTimeCollation-earlypoint.txt
             #Convex hull maximum
-            find $line -name "ConvexHullSummStatsAsRateFromFrame1to$earlyFrame*" | xargs -n1 awk -F "," 'END{print $2}' >> PIPELINE/maxCHRateCollation-earlypoint.txt
+            find $line -name "ConvexHullSummStatsAsRateFromFrame1to${earlyFrame}_*" | xargs -n1 awk -F "," 'END{print $2}' >> PIPELINE/maxCHRateCollation-earlypoint.txt
             #Convex hull minimum
-            find $line -name "ConvexHullSummStatsAsRateFromFrame1to$earlyFrame*" | xargs -n1 awk -F "," 'END{print $3}' >> PIPELINE/minCHRateCollation-earlypoint.txt
+            find $line -name "ConvexHullSummStatsAsRateFromFrame1to${earlyFrame}_*" | xargs -n1 awk -F "," 'END{print $3}' >> PIPELINE/minCHRateCollation-earlypoint.txt
             #Convex hull mean
-            find $line -name "ConvexHullSummStatsAsRateFromFrame1to$earlyFrame*" | xargs -n1 awk -F "," 'END{print $4}' >> PIPELINE/meanCHRateCollation-earlypoint.txt
+            find $line -name "ConvexHullSummStatsAsRateFromFrame1to${earlyFrame}_*" | xargs -n1 awk -F "," 'END{print $4}' >> PIPELINE/meanCHRateCollation-earlypoint.txt
             #Convex hull CoV
-            find $line -name "ConvexHullSummStatsAsRateFromFrame1to$earlyFrame*" | xargs -n1 awk -F "," 'END{print $5}' >> PIPELINE/cvCHRateCollation-earlypoint.txt
+            find $line -name "ConvexHullSummStatsAsRateFromFrame1to${earlyFrame}_*" | xargs -n1 awk -F "," 'END{print $5}' >> PIPELINE/cvCHRateCollation-earlypoint.txt
             #averageDists with singletons
             find $line -name "averageDistsOverNetworksForAllFrames_WS.csv" | xargs -n1 awk -v frame="$((earlyFrame+1))" -F "," '{if(NR==frame) print $2}' >> PIPELINE/AverageDistsWScollation-earlypoint.txt
             #averageNumberOfConnectedNeighbours

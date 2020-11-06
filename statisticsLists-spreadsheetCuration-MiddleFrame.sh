@@ -68,23 +68,23 @@ do
             # 13 Mean Speed
             find $line -name "speedMeansOverAllFrames*" | xargs -n1 awk -v frame="$((middleFrame+1))" -F "," '{if(NR==frame) print $3}' >> PIPELINE/meanSpeedCollation-midpoint.txt
             # 14 Convex hull maximum    100Frames4 might need editing here for these
-            find $line -name "ConvexHullSummStatsFromFrame1to$middleFrame*" | xargs -n1 awk -F "," 'END{print $2}' >> PIPELINE/maxCHCollation-midpoint.txt
+            find $line -name "ConvexHullSummStatsFromFrame1to${middleFrame}_*" | xargs -n1 awk -F "," 'END{print $2}' >> PIPELINE/maxCHCollation-midpoint.txt
             # 15 Convex hull minimum
-            find $line -name "ConvexHullSummStatsFromFrame1to$middleFrame*" | xargs -n1 awk -F "," 'END{print $3}' >> PIPELINE/minCHCollation-midpoint.txt
+            find $line -name "ConvexHullSummStatsFromFrame1to${middleFrame}_*" | xargs -n1 awk -F "," 'END{print $3}' >> PIPELINE/minCHCollation-midpoint.txt
             # 16 Convex hull mean
-            find $line -name "ConvexHullSummStatsFromFrame1to$middleFrame*" | xargs -n1 awk -F "," 'END{print $4}' >> PIPELINE/meanCHCollation-midpoint.txt
+            find $line -name "ConvexHullSummStatsFromFrame1to${middleFrame}_*" | xargs -n1 awk -F "," 'END{print $4}' >> PIPELINE/meanCHCollation-midpoint.txt
             # 17 Convex hull CoV
-            find $line -name "ConvexHullSummStatsFromFrame1to$middleFrame*" | xargs -n1 awk -F "," 'END{print $5}' >> PIPELINE/cvCHCollation-midpoint.txt
+            find $line -name "ConvexHullSummStatsFromFrame1to${middleFrame}_*" | xargs -n1 awk -F "," 'END{print $5}' >> PIPELINE/cvCHCollation-midpoint.txt
             # 18 AssociationTime
-            find $line -name "associationtimeIntervalsMeanIn1to$middleFrame*" | xargs -n1 awk -F "," 'END{print $2}' >> PIPELINE/assocTimeCollation-midpoint.txt
+            find $line -name "associationtimeIntervalsMeanIn1to${middleFrame}_*" | xargs -n1 awk -F "," 'END{print $2}' >> PIPELINE/assocTimeCollation-midpoint.txt
             # 19 Convex hull maximum
-            find $line -name "ConvexHullSummStatsAsRateFromFrame1to$middleFrame*" | xargs -n1 awk -F "," 'END{print $2}' >> PIPELINE/maxCHRateCollation-midpoint.txt
+            find $line -name "ConvexHullSummStatsAsRateFromFrame1to${middleFrame}_*" | xargs -n1 awk -F "," 'END{print $2}' >> PIPELINE/maxCHRateCollation-midpoint.txt
             # 20 Convex hull minimum
-            find $line -name "ConvexHullSummStatsAsRateFromFrame1to$middleFrame*" | xargs -n1 awk -F "," 'END{print $3}' >> PIPELINE/minCHRateCollation-midpoint.txt
+            find $line -name "ConvexHullSummStatsAsRateFromFrame1to${middleFrame}_*" | xargs -n1 awk -F "," 'END{print $3}' >> PIPELINE/minCHRateCollation-midpoint.txt
             # 21 Convex hull mean
-            find $line -name "ConvexHullSummStatsAsRateFromFrame1to$middleFrame*" | xargs -n1 awk -F "," 'END{print $4}' >> PIPELINE/meanCHRateCollation-midpoint.txt
+            find $line -name "ConvexHullSummStatsAsRateFromFrame1to${middleFrame}_*" | xargs -n1 awk -F "," 'END{print $4}' >> PIPELINE/meanCHRateCollation-midpoint.txt
             # 22 Convex hull CoV
-            find $line -name "ConvexHullSummStatsAsRateFromFrame1to$middleFrame*" | xargs -n1 awk -F "," 'END{print $5}' >> PIPELINE/cvCHRateCollation-midpoint.txt
+            find $line -name "ConvexHullSummStatsAsRateFromFrame1to${middleFrame}_*" | xargs -n1 awk -F "," 'END{print $5}' >> PIPELINE/cvCHRateCollation-midpoint.txt
             # 23 averageDists with singletons
             find $line -name "averageDistsOverNetworksForAllFrames_WS.csv" | xargs -n1 awk -v frame="$((middleFrame+1))" -F "," '{if(NR==frame) print $2}' >> PIPELINE/AverageDistsWScollation-midpoint.txt
             # 24 averageNumberOfConnectedNeighbours
