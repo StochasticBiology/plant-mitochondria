@@ -19,12 +19,14 @@ createStatHistograms<-function(){
 createSingleHistograms <- function() {
   stattable<-stattable[,-c(1,2)]
   for (i in 1:as.numeric(args[3])){
-    data <- as.numeric(stattable[i,])
-    saveAs <-paste("(",filename,")",statname,"Frame",i,sep=" ")
-    png(paste(workingdirectory,"/histograms/",saveAs,sep=""))
-    printAs <- paste(statname,"Frame",i,"plot.jpg",sep=" ")
-    hist(data, xlab= statname, main = printAs,col=colourr)
-    dev.off()
+    if(!is.na(stattable[i,1])){
+      data <- as.numeric(stattable[i,])
+      saveAs <-paste("(",filename,")",statname,"Frame",i,sep=" ")
+      png(paste(workingdirectory,"/histograms/",saveAs,sep=""))
+      printAs <- paste(statname,"Frame",i,"plot.jpg",sep=" ")
+      hist(data, xlab= statname, main = printAs,col=colourr)
+      dev.off()
+    }
   }
 }
 

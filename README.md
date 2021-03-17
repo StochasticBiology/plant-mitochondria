@@ -22,6 +22,7 @@ Before running, ensure you have access to:
     - magick
     - ggdark
     - ggthemes
+    - svglite
     - methods
     - sp
     - dplyr
@@ -29,15 +30,15 @@ Before running, ensure you have access to:
     
 ## Simulation of mitochondrial motion
 
-To run the model code (as defined by [physnew-28-11-19.c](PIPELINE/physnew-28-11-19.c)), with chosen parameterisations as input variables use:
+To run the model code (as defined by [physnew-28-11-19.c](PIPELINE/physnew-28-11-19.c)), with chosen parameterisations, *followed by* frame time (ie frame interaval), video resolution, frame number and colocalisation distance as input variables:
 ```sh
 cd PIPELINE
-./automatedSimulationRun.sh NCYT NMITO EDGELOSS CYTDIST CYTATTACH CYTDETACH CYTSPEED MITDIST MITSPEED STEPTYPE STEPPARAM HYDRO RSEED
+./automatedSimulationRun.sh NCYT NMITO EDGELOSS CYTDIST CYTATTACH CYTDETACH CYTSPEED MITDIST MITSPEED STEPTYPE STEPPARAM HYDRO RSEED FrameTime Resolution FrameNumber ColocDistance
 ```
 Ensure correct formatting of input variables. For example:
 ```sh
 cd PIPELINE
-./automatedSimulationRun.sh 3 111 0.050 2.166 0.000 0.216 4.581 3.472 0.884 0 0.762 0.162 0
+./automatedSimulationRun.sh 3 111 0.050 2.166 0.000 0.216 4.581 3.472 0.884 0 0.762 0.162 0 1.1628 1.000 198 1.6
 ```
 This script also runs `masterSSGeneration.sh` so analyses the output, generating a file named ./PIPELINE/simulations/3_111_0.050_2.166_0.000_0.216_4.581_3.472_0.884_0_0.762_0.162_0 full of summary statistics lists, images, and graphs.
 

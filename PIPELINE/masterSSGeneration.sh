@@ -1,8 +1,8 @@
 cd ${1}${2}
 pwd
 
-echo ${1} ${2} ${3} ${4} ${5} ${6} ${7} ${8}
-#Organelles-am-2.ce takes the trajectory analysis file, and the colocalisation distance (8.0 (video) or 1.6 (sim) in this case)
+echo ${1} ${2} ${3} ${4} ${5} ${6} ${7} 
+#Organelles-am-2.ce takes the trajectory analysis file, and the colocalisation distance 
 
 ../../organelles-am-2.ce ${3} ${7}
 #Gives: filename.txt, the adjacency matrix for all colocalised mitos in that frame
@@ -60,7 +60,6 @@ echo finished without singletons starting with singletons
 echo finishedproportionsCCs
 
 #Histogram and log table generation
-#For some of the simulation files these histograms won't generate because you're missing the first few frames of data as a network has not yet built up
 ./summaryStatisticsHists.R ${1} ${2} ${6}
  
 #Calculates angle of motion for all mitos in video
@@ -75,8 +74,8 @@ echo running speeds
 echo finished speeds
 
 #Calculates association time between two individual mitos for all mitos in video, and first checks -spec.txt have content, if not adds NAs in. Otherwise empty files hinder association time count
-./emptyFileCheck.sh ${1} ${2} ${3} ${4} ${5} ${6} ${7} ${8}
-./associationTime.r ${1} ${2} ${3} ${4} ${5} ${6} ${7} ${8}
+./emptyFileCheck.sh ${1} ${2} ${3} ${4} ${5} ${6} ${7} 
+./associationTime.r ${1} ${2} ${3} ${4} ${5} ${6} ${7} 
 
 #Calculates shortest inter-mitochondrial distance between each mito in the cell and every other mito. Also CoV.
 echo running inter mito distance
@@ -87,48 +86,49 @@ echo finished intermito distance
 #Followed by storing degree values for all steps of all frames in one file. Means table stays in main video directory. 
 #Look for MeanDropsBetweenStepsForAllFramesIn...csv file and walkerDegreeOutput folder
 echo started walker stat
-./MetricAutomatedWalkerStat.sh ${1} ${2} ${3} ${4} ${5} ${6} ${7} ${8}
+./MetricAutomatedWalkerStat.sh ${1} ${2} ${3} ${4} ${5} ${6} ${7} 
 ./walkerDegreeFilesMove.sh ${1} ${2}
 echo finished walker stat
 
 #Calculating convex hulls- exports 'maps' of convex hull areas too- for experimental data this will overall mimick cell shape
 echo started convex hulls
-./convexHullWorkAutomated.R ${1} ${2} ${3} ${4} ${5} ${6} ${7} ${8} 
+./convexHullWorkAutomated.R ${1} ${2} ${3} ${4} ${5} ${6} ${7}  
 echo finished convex hulls
 
 #Maximum minimum distances across the network compared wih 200x erdos renyi random network generations, from which max min is taken and compared mxmin of the network
 #Date stamps as for networks with many connected components this takes a very long time, erdos renyi nets for hundereds of connected components take ages.
 echo started max min dist 
 date
-./MaximumMinimumDistanceNormalisedAutomated.sh ${1} ${2} ${3} ${4} ${5} ${6} ${7} ${8}
+./MaximumMinimumDistanceNormalisedAutomated.sh ${1} ${2} ${3} ${4} ${5} ${6} ${7} 
 date
 echo finished max min dist
 
 echo started percolation jumps 
-./percolationJumpsRedoAutomated.sh ${1} ${2} ${3} ${4} ${5} ${6} ${7} ${8}
+./percolationJumpsRedoAutomated.sh ${1} ${2} ${3} ${4} ${5} ${6} ${7} 
 echo finished percolation jumps
 
 echo started average connected neighbours
-./averageNumberOfConnectedNeighbours.R ${1} ${2} ${3} ${4} ${5} ${6} ${7} ${8}
+./averageNumberOfConnectedNeighbours.R ${1} ${2} ${3} ${4} ${5} ${6} ${7} 
 echo finished average connected neighbours
 
 echo started network efficiency 
-./NetworkEfficiency.sh ${1} ${2} ${3} ${4} ${5} ${6} ${7} ${8}
+./NetworkEfficiency.sh ${1} ${2} ${3} ${4} ${5} ${6} ${7} 
 echo finished network efficiency 
 
 #novel scripts for statistics collection over time- splits regular stats into stats for each time point- for supplementary
 echo started stat collection over time.
 
 #generates summaryStatsAccumulatesOverAllFramesInterMitoDist.csv
-./distancesBetweenMitochondriaForIntervals-allintervals.R ${1} ${2} ${3} ${4} ${5} ${6} ${7} ${8}
+./distancesBetweenMitochondriaForIntervals-allintervals.R ${1} ${2} ${3} ${4} ${5} ${6} ${7} 
 
 # Generates speedMeansOverAllFrames
-./speedsOfMitochondriaForVidsForIntervals-AllIntervals.R ${1} ${2} ${3} ${4} ${5} ${6} ${7} ${8}
+./emptyFileCheckSpeeds.sh  ${1} ${2} ${3} ${4} ${5} ${6} ${7} 
+./speedsOfMitochondriaForVidsForIntervals-AllIntervals.R ${1} ${2} ${3} ${4} ${5} ${6} ${7} 
 
 #ConvexHullSummStatsAsRateFromFrame1to
-./convexHullWorkForIntervals-earlymidpoint.R ${1} ${2} ${3} ${4} ${5} ${6} ${7} ${8}
+./convexHullWorkForIntervals-earlymidpoint.R ${1} ${2} ${3} ${4} ${5} ${6} ${7} 
 
 # Genrates associationtimesIntrvls and associationtimeIntervalsMeanIn1to*
-./associationTimeForIntervals-AllIntervals.r ${1} ${2} ${3} ${4} ${5} ${6} ${7} ${8}
+./associationTimeForIntervals-AllIntervals.r ${1} ${2} ${3} ${4} ${5} ${6} ${7} 
 
 echo finished stat collection over time.

@@ -3,7 +3,6 @@ args = commandArgs(trailingOnly=TRUE)
 
 suppressMessages(library(ggplot2))
 suppressMessages(library(dplyr))
-suppressMessages(library(vioplot))
 
 #A script to find the length of each trajectory in a whole video, with the aim of getting the average length.
 #Tajectories are made up of coordinates, appearing in consecutive frames.
@@ -66,5 +65,7 @@ for(i in 1:nrow(trajectoryFile)){
   }
 }
 pdf(paste(workingd,"/",videoname,"vioplot.pdf",sep=""))
-ggplot(trajectoryFile, aes(x = videoname, y = allsummeddistances)) + geom_point(col=trajectoryFile$allsummeddistances) + geom_violin(alpha=.2)+geom_point(aes(x=videoname,y=mean(trajectoryFile$allsummeddistances)),shape=4,col="black",size=4)+ylab("all summed distances (microns)") + labs(title = paste("Trajectory lengths for ",videoname,""))
+#strange recommendation warning with using trajectoryFile$allsummeddistances, so abbreviate it here. 
+asd=trajectoryFile$allsummeddistances
+ggplot(trajectoryFile, aes(x = videoname, y = allsummeddistances)) + geom_point(col=asd) + geom_violin(alpha=.2)+geom_point(aes(x=videoname,y=mean(asd)),shape=4,col="black",size=4)+ylab("all summed distances (microns)") + labs(title = paste("Trajectory lengths for ",videoname,""))
 dev.off()

@@ -8,13 +8,13 @@
 #for i in $(seq 0 $c); do
 
 #IF IT'S NOT RUNNING AND HAS AN EMPTY 199 FRAME-spec, LOOK ABOVE ^^^^
-##for i in $(seq 0 $6); do
+for i in $(seq 0 $6); do
 
-#echo note that empty check runs through -spoec.txt files in main directory, but changes occuring in the historicalAndNewPairs directory
-##echo ${i}
-##if [[ -s $1/$2/$3-1.6-${i}-spec.txt ]]; then echo "file has something"; else echo "NA NA" > $1/$2/historicalAndNewPairs/$3-1.6-${i}-spec.txt; fi
+#echo note that empty check runs through -spec.txt files in main directory, but changes occuring in the historicalAndNewPairs directory
+echo ${i}
+if [[ -s $1/$2/$3-$7-${i}-spec.txt ]]; then echo "file has something"; else echo "NA NA" > $1/$2/historicalAndNewPairs/$3-$7-${i}-spec.txt; fi
 
-##done
+done
 
 
 

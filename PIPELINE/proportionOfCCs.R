@@ -3,8 +3,12 @@ args = commandArgs(trailingOnly=TRUE)
 
 setwd(args[1])
 print("reading")
-SCCfile<-read.table(paste(args[1],args[2],"/",args[2],"_SCCreformat2.csv",sep=""),header=FALSE)
 
+#was reading in with read.table, giving the characteristic rows with no column seperation. Code built around that. For netwroks with no early frames, needed to modify- used readLines
+#Could have use read.delim but code structured for line by line use. 
+SCCfileX<-readLines(paste(args[1],args[2],"/",args[2],"_SCCreformat2.csv",sep=""))
+SCCfile<-data.frame(SCCfileX)
+colnames(SCCfile)<-"V1"
 #This works!!! because you cannot have 0s in the list of values, but you also can't have Nas in the list you want to total to give you a value to decide by for the proportions,
 #So you need to create a list with 0's to overcome the 'spiky' format of the mathematica outputs, but ALSO have a format with NAs so you do not include excessive 0 values into your violin plots. 
 
@@ -57,11 +61,11 @@ lengthLongestSizes<-function(){
 #Current file has NAs in so need to replace them back with 0s.
 replacesNA<-function(finaldataframe){
   SCCfilewithzeros<-data.frame(finaldataframe)
-  for (i in 1:nrow(SCCfilewithzeros)){
-    for (j in 1:ncol(SCCfilewithzeros)){
+ # for (i in 1:nrow(SCCfilewithzeros)){
+  #  for (j in 1:ncol(SCCfilewithzeros)){
       SCCfilewithzeros[is.na(SCCfilewithzeros)] <- 0
-    }
-  }
+   # }
+  #}
   #write.csv(SCCfilealtered,file="SCCfilealtered.csv")
   return(SCCfilewithzeros)
 }

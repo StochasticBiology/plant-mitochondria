@@ -2,7 +2,7 @@
 args = commandArgs(trailingOnly=TRUE)
 
 setwd(args[1])
-SCCfile<-read.table(paste(args[1],args[2],"/",args[2],"_SCCreformat2_WS.csv",sep=""),header=FALSE)
+SCCfile<-read.delim(paste(args[1],args[2],"/",args[2],"_SCCreformat2_WS.csv",sep=""),header=FALSE,sep=",")
 
 
 #This works!!! because you cannot have 0s in the list of values, but you also can't have Nas in the list you want to total to give you a value to decide by for the proportions,
@@ -57,11 +57,11 @@ lengthLongestSizes<-function(){
 #Current file has NAs in so need to replace them back with 0s.
 replacesNA<-function(finaldataframe){
   SCCfilewithzeros<-data.frame(finaldataframe)
-  for (i in 1:nrow(SCCfilewithzeros)){
-    for (j in 1:ncol(SCCfilewithzeros)){
+  #for (i in 1:nrow(SCCfilewithzeros)){
+  #  for (j in 1:ncol(SCCfilewithzeros)){
       SCCfilewithzeros[is.na(SCCfilewithzeros)] <- 0
-    }
-  }
+   # }
+  #}
   #write.csv(SCCfilealtered,file="SCCfilealtered.csv")
   return(SCCfilewithzeros)
 }

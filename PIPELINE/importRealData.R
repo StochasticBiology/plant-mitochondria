@@ -124,15 +124,16 @@ outputfilename<-paste("",videoname,"_",name,".csv", sep ="")
 cellSplit_betweenessValue<-read.csv(outputfilename,header=TRUE)
 
 #Normalised Betweeness Values
-nameNBC<-paste(args[2],"_mergedNBCfile.csv",sep="")
-normBetweenessValue<-read.table(nameNBC,header=FALSE)
-normBetweenessValue$V1<-gsub("[\\{}]","", normBetweenessValue$V1)
-#colnames(betweenessValue)<-c("V1")
-x<-data.frame(inputFrameList,normBetweenessValue)
-name<-"normBC"
-invisible(createDataFrame())
-outputfilename<-paste("",videoname,"_",name,".csv", sep ="")
-cellSplit_normBetweenessValue<-read.csv(outputfilename,header=TRUE)
+#Commented out as did not use this statistic, also if network has no edges and therefore no NBC in early frames this errors. 
+#nameNBC<-paste(args[2],"_mergedNBCfile.csv",sep="")
+#normBetweenessValue<-read.table(nameNBC,header=FALSE)
+#normBetweenessValue$V1<-gsub("[\\{}]","", normBetweenessValue$V1)
+##colnames(betweenessValue)<-c("V1")
+#x<-data.frame(inputFrameList,normBetweenessValue)
+#name<-"normBC"
+#invisible(createDataFrame())
+#outputfilename<-paste("",videoname,"_",name,".csv", sep ="")
+#cellSplit_normBetweenessValue<-read.csv(outputfilename,header=TRUE)
 
 AllSpeeds = list.files(pattern="*.csv")
 for (i in 1:length(AllSpeeds)){
