@@ -55,7 +55,7 @@ table2<-c(logMeanDegree2,InterMitoMean2,MeanSpeed2,degreeCV2,NetworkEfficiency2)
 #transpose
 SummaryTable<-t(data.frame(table1,table2))
 colnames(SummaryTable)<-c( paste("logMeanDegree","\n","(at 24 seconds)"), paste("InterMitoMean","\n","(at 24 seconds)"),paste("MeanSpeed","\n","(0-24 seconds)"), paste("DegreeCV","\n","(at 24 seconds)"),paste("Network Efficiency","\n","(at 24 seconds)"))
-rownames(SummaryTable)<-c("Independant Video 1","Independant Video 2")
+rownames(SummaryTable)<-c("Independent Video 1","Independent Video 2")
 SummaryTble<-tableGrob(data.frame(SummaryTable),theme=ttheme_minimal(base_size = 7, padding= unit(c(1,1),"mm")) ,cols = colnames(SummaryTable),rows = rownames(SummaryTable)) 
 ggarrange(SummaryTble)
 

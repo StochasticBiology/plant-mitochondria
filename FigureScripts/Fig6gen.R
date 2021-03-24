@@ -13,12 +13,12 @@ library(methods)
 workingdirectory<-"~/Documents/PIPELINEdocs/"
 setwd(workingdirectory)
 
-firstFrame<-read.csv("SIMSTATSTABLE-SELECTIVELYLOGGED-FIRSTFRAME-6-11-20-updatedLabelling.csv")
-fifthFrame<-read.csv("SIMSTATSTABLE-SELECTIVELYLOGGED-FIFTHFRAME-6-11-20-updatedLabelling.csv")
-tenthFrame<-read.csv("SIMSTATSTABLE-SELECTIVELYLOGGED-TENTHFRAME-6-11-20-updatedLabelling.csv")
-twentyFrame<-read.csv("SIMSTATSTABLE-SELECTIVELYLOGGED-TWENTIETHFRAME-6-11-20-updatedLabelling.csv")
-fiftyFrame<-read.csv("SIMSTATSTABLE-SELECTIVELYLOGGED-FIFTIETHFRAME-6-11-20-updatedLabelling.csv")
-hundredFrame<-read.csv("SIMSTATSTABLE-SELECTIVELYLOGGED-HUNDREDTHFRAME-6-11-20-updatedLabelling.csv")
+firstFrame<-read.csv("SIMSTATSTABLE-SELECTIVELYLOGGED-FIRSTFRAME-6-11-20-updatedLabelling2.csv")
+fifthFrame<-read.csv("SIMSTATSTABLE-SELECTIVELYLOGGED-FIFTHFRAME-6-11-20-updatedLabelling2.csv")
+tenthFrame<-read.csv("SIMSTATSTABLE-SELECTIVELYLOGGED-TENTHFRAME-6-11-20-updatedLabelling2.csv")
+twentyFrame<-read.csv("SIMSTATSTABLE-SELECTIVELYLOGGED-TWENTIETHFRAME-6-11-20-updatedLabelling2.csv")
+fiftyFrame<-read.csv("SIMSTATSTABLE-SELECTIVELYLOGGED-FIFTIETHFRAME-6-11-20-updatedLabelling2.csv")
+hundredFrame<-read.csv("SIMSTATSTABLE-SELECTIVELYLOGGED-HUNDREDTHFRAME-6-11-20-updatedLabelling2.csv")
 
 
 
@@ -34,9 +34,9 @@ colnames(x)[4] <- "Label"
 
 
 #So we will colour mark them if they are of a different length, then also single them out later on in the trellis plotting ( for their own little trellis plot of smaller videos. ) 
-cols = ifelse(x$Type=="Experimental", ifelse(x$Label=="F1"|x$Label=="F2"|x$Label=="F3"|x$Label=="F4"|x$Label=="F5"|x$Label=="F6"|x$Label=="F7"|x$Label=="F8"|x$Label=="F9"|x$Label=="F10"|x$Label=="F11"|x$Label=="F12"|x$Label=="F13"|x$Label=="F14"|x$Label=="F15"|x$Label=="F16"|x$Label=="F17"|x$Label=="F18"|x$Label=="F19"|x$Label=="F20"|x$Label=="F21"|x$Label=="F01", "red", "green"), "gray") 
+cols = ifelse(x$Type=="Experimental", ifelse(x$Label=="F1"|x$Label=="F2"|x$Label=="F3"|x$Label=="F4"|x$Label=="F5"|x$Label=="F6"|x$Label=="F7"|x$Label=="F8"|x$Label=="F9"|x$Label=="F10"|x$Label=="F11"|x$Label=="F12"|x$Label=="F13"|x$Label=="F14"|x$Label=="F15"|x$Label=="F16"|x$Label=="F17"|x$Label=="F18"|x$Label=="F19"|x$Label=="F20"|x$Label=="F21"|x$Label=="F01", "violet", "green"), "gray") 
 #Just specify exactly which videos you don't want (You only want the comprable videos- at frame 1, the simulations and some GFPs and FRs are not comparable in frame times)
-a<-c("GFP01","GFP02","GFP03","GFP04","GFP005","GFP007","GFP05","GFP06","GFP07","GFP08","GFP09","GFP010","GFP011","F7","F11","F01","INDVID1","INDVID2")
+a<-c("GFP01","GFP02","GFP03","GFP04","GFP005","GFP007","GFP05","GFP06","GFP07","GFP08","GFP09","GFP010","GFP011","F007","F0011","F01","INDVID1","INDVID2")
 
 
 positionsOfUnWantedVideos<-c()
@@ -60,7 +60,7 @@ appropriateCols<-colsxe
 
 #If you just want GFP and FR
 positionsOfTheoretical<-which(statTable$Type %in% "Theoretical")
-positionsOfIndependantsAndTooShortVids<-which(statTable$Label %in% c("GFP005","GFP007","INDVID1","F7","F11","F01"))
+positionsOfIndependantsAndTooShortVids<-which(statTable$Label %in% c("GFP005","GFP007","INDVID1","F007","F0011","F01"))
 positionsToRemove<-c(positionsOfTheoretical,positionsOfIndependantsAndTooShortVids)
 limitedTableNoTheory<-statTable[-positionsToRemove,]
 appropriateCols<-appropriateCols[-positionsToRemove]
@@ -128,7 +128,7 @@ plotFig4 <- function() {
 p <-ggarrange(plotlist=plotFig4(), nrow=1,ncol=4 ) 
 p
 
-ggsave("~/Documents/PhD Reports and Documents/ReportsAndFormalities/Paper/paperDrafts/Figures/Figure6/figure6-partB-updatedLabelling.pdf", p, width = 40, height = 17, units = "cm")
+ggsave("~/Documents/PhD Reports and Documents/ReportsAndFormalities/Paper/paperDrafts/Figures/Figure6/figure6-partB-updatedLabelling2.pdf", p, width = 40, height = 17, units = "cm")
 
 
 

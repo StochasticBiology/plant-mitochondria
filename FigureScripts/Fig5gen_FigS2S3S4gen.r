@@ -347,7 +347,7 @@ positionsOfSimsOfInterest<-match(c("ST1", "ST11", "ST9", "NM2", "ST2", "S1"),xeN
 
 
 
-plotFigS1 <- function() {
+plotFigS2 <- function() {
   plotList <- c()
   
   for (i in 1:3) {
@@ -407,7 +407,7 @@ plotFigS1 <- function() {
 }
 
 
-p <-ggarrange(plotlist=plotFigS1(), labels = c("A","B","C"),
+p <-ggarrange(plotlist=plotFigS2(), labels = c("A","B","C"),
               nrow = 1,
               ncol=3 ) 
 p
