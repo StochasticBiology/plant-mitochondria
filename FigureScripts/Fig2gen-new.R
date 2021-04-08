@@ -70,7 +70,7 @@ gE2<-ggdraw() + draw_image("Resultstrackmaterun-nice120Frame50.jpg")
 gE3<-ggdraw() + draw_image("Resultstrackmaterun-nice120Frame100.jpg")
 
 #F -- distribution of degree at those times (3 hists), stacked over each other
-degreeByFrame<-read.csv(paste(currentCell,"_D.csv",sep=""))
+degreeByFrame<-read.csv(paste(currentCell,"_D_WS.csv",sep=""))
 
 distributionatPlus10<-t(degreeByFrame[10,3:ncol(degreeByFrame)])
 distatPlus10<-na.omit(data.frame(distributionatPlus10[,1]))
@@ -106,9 +106,9 @@ gF<- ggplot(a, aes(x=Degree)) +
   theme(legend.position = "none")
 
 ###### G -- time series of degree and CV
-degreeMeanOverTime<-read.csv(paste(currentCell,"_MeanD.csv",sep=""))
-cvDegreeOverTime<-read.csv(paste(currentCell,"_CoeffVarD.csv",sep=""))
-degreeOverTime<-read.csv(paste(currentCell,"_D.csv",sep=""))
+degreeMeanOverTime<-read.csv(paste(currentCell,"_MeanD_WS.csv",sep=""))
+cvDegreeOverTime<-read.csv(paste(currentCell,"_CoeffVarD_WS.csv",sep=""))
+degreeOverTime<-read.csv(paste(currentCell,"_D_WS.csv",sep=""))
 
 timeSeriesData<-data.frame(degreeMeanOverTime,cvDegreeOverTime$CoeffVarD)
 colnames(timeSeriesData)[3] <- c("CoefficientOfVariation")
@@ -135,7 +135,7 @@ gGa2 <- ggplot(data=degreeMeanAndSD)  +
         panel.grid.minor = element_line(size = 1),
         panel.grid.major = element_line(size = 1.5)) +
   scale_x_continuous(expand = c(0, 0),breaks = seq(0, 120, by = 60), limits = c(0, NA),minor_breaks = seq(0, 120, 10)) + 
-  scale_y_continuous(expand = c(0, 0),breaks = seq(0, 10, by = 5),minor_breaks = seq(0, 10, 1),limits = c(0, (max(degreeMeanAndSD$Mean.Degree)+max(degreeMeanAndSD$sdTable.stdevList))+1))
+  scale_y_continuous(expand = c(0, 0),breaks = seq(0, 10, by = 5),minor_breaks = seq(0, 10, 1),limits = c(-1, (max(degreeMeanAndSD$Mean.Degree)+max(degreeMeanAndSD$sdTable.stdevList))+1))
 gGa2
 
 gGb<-ggplot(data=timeSeriesData) + geom_line(aes(x=Frame,y=CoefficientOfVariation),col="Blue", size =2.5) + ylab("CV (Degree)") +
@@ -145,7 +145,7 @@ gGb<-ggplot(data=timeSeriesData) + geom_line(aes(x=Frame,y=CoefficientOfVariatio
         panel.grid.minor = element_line(size = 1),
         panel.grid.major = element_line(size = 1.5),
         plot.background = element_rect(fill = "transparent",colour = NA)) +
-  scale_y_continuous(breaks = seq(0, max(timeSeriesData$CoefficientOfVariation), by = 0.15)) + 
+  scale_y_continuous(breaks = seq(0, max(timeSeriesData$CoefficientOfVariation), by = 0.15),limits= c(0.65,max(timeSeriesData$CoefficientOfVariation))) + 
   scale_x_continuous(breaks = seq(0, 120, by = 60))
 gGb
 
@@ -199,7 +199,9 @@ gD<-ggplot(data = distanceFrame) + geom_histogram(aes(x=distanceList),binwidth=0
 gE1<-ggdraw() + draw_image("Resultstrackmaterun-nice120Frame10.jpg",scale = 0.55)
 gE2<-ggdraw() + draw_image("Resultstrackmaterun-nice120Frame50.jpg")
 gE3<-ggdraw() + draw_image("Resultstrackmaterun-nice120Frame100.jpg")
-gF<- ggplot(a, aes(x=Degree)) + geom_histogram(aes(y=..density..,fill = TimeOrdered),position = "dodge", binwidth=1) + ylab("Probability")   + theme(legend.title = element_blank(), legend.key.size = unit(2,"cm"),  legend.position=c(0.80, 0.8),legend.background = element_blank(),legend.key = element_blank())+ theme(axis.text=element_text(size=40),axis.title=element_text(size=40),legend.text=element_text(size=40))
+gF<- ggplot(a, aes(x=Degree)) + geom_histogram(aes(y=..density..,fill = TimeOrdered),position = "dodge", binwidth=1) + ylab("Probability")   + theme(legend.title = element_blank(), legend.key.size = unit(2,"cm"),  legend.position=c(0.80, 0.8),legend.background = element_blank(),legend.key = element_blank())+ theme(axis.text=element_text(size=40),axis.title=element_text(size=40),legend.text=element_text(size=40))+
+  scale_color_manual(values=c("red", "blue", "darkgrey")) + scale_fill_manual(values=c("red", "blue", "darkgrey"))
+ gF                                                                                                                                                                                                                                                                                                                                                                                                                     
 gG<-ggdraw() + draw_image("~/Documents/PIPELINEdocs/Figure2G.png",scale=0.99)
 # Arrange plots using ggarrange
 p <-ggarrange(ggarrange(gA, gB,gC, gD, ncol = 4, labels = c("A", "B","C", "D"),font.label = list(size = 50)),
@@ -214,7 +216,7 @@ p
 ggsave("~/Documents/PIPELINEdocs/Figure2.pdf", p, width = 20, height = 20, units = "cm")
 ggsave("~/Documents/PhD Reports and Documents/ReportsAndFormalities/Paper/paperDrafts/Figures/Figure2.pdf", p, width = 25, height = 20, units = "cm")
 #png
-ggsave("~/Documents/PIPELINEdocs/Figure2.png", p, width = 20, height = 27, units = "cm")
+ggsave("~/Documents/PIPELINEdocs/Figure2-redo.png", p, width = 20, height = 27, units = "cm")
 ggsave("~/Documents/PhD Reports and Documents/ReportsAndFormalities/Paper/paperDrafts/Figures/Figure2new.svg", p, width = 100, height = 90, units = "cm")
 
 
