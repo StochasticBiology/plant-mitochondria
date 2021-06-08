@@ -9,7 +9,7 @@ git clone https://github.com/StochasticBiology/plant-mitochondria.git
 
 ## Requirements
 
-Note: we are currently refactoring this code to (a) remove dependence on proprietary software and (b) streamline the analysis. R code in [refactor] replaces both bash+C code for network construction and Mathematica notebooks for network analysis and visualisation. It needs R with igraph and brainGraph packages. Using this code alone one should be able to take TrackMate trajectories (output as XML) and construct and analyse encounter network statistics. This refactoring is ongoing; please contact us if you have particular priorities! The following holds for the code outside [refactor].
+Note: we are currently refactoring this code to (a) remove dependence on proprietary software and (b) streamline the analysis. R code in `refactor/` replaces both bash+C code for network construction and Mathematica notebooks for network analysis and visualisation. It needs R with igraph and brainGraph packages. Using this code alone one should be able to take TrackMate trajectories (output as XML) and construct and analyse encounter network statistics. This refactoring is ongoing; please contact us if you have particular priorities! The following holds for the code outside `refactor/`.
 
 Before running, ensure you have access to:
 - Wolfram Mathematica (version 11.3.0.0 used here)
