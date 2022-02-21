@@ -1,5 +1,6 @@
 # Mitochondria plant social networks
 
+[![DOI](https://zenodo.org/badge/290777516.svg)](https://zenodo.org/badge/latestdoi/290777516)
 
 Retrive a local copy with
 
