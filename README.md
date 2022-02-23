@@ -1,5 +1,7 @@
 # Mitochondria plant social networks
 
+Note: This code base is a little complicated and contains some Mathematica code. For a streamlined pipeline for the extraction and analysis of these networks without proprietary software, consider https://github.com/StochasticBiology/mito-network-sharing .
+
 [![DOI](https://zenodo.org/badge/290777516.svg)](https://zenodo.org/badge/latestdoi/290777516)
 
 Retrive a local copy with
